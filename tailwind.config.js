@@ -6,6 +6,9 @@ export default {
   ],
   theme: {
     extend: {
+      textColor: {
+        'redflix': '#e50913',
+      },
       fontFamily: {
         'nsans-light': ['Nsans Light'],
         'nsans-medium': ['Nsans Medium'],
@@ -14,6 +17,14 @@ export default {
       }
     },
   },
-  plugins: [],
+  plugins: [
+    function ({ addUtilities }) {
+      const newUtilities = {
+        '.bg-red-redflix': { backgroundColor: '#e50913' },
+      };
+
+      addUtilities(newUtilities, ['responsive', 'hover']);
+    },
+  ],
 }
 
