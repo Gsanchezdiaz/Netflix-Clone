@@ -8,7 +8,7 @@ const MovieRow = ({ title, url }) => {
 
   useEffect(() => {
     axios.get(url).then((response) => {
-      console.log(response.data);
+      // console.log(response.data);
       if (response.status === 200 && response.data.results.length > 0) {
         setMovies(response.data.results);
       } else {
@@ -17,7 +17,7 @@ const MovieRow = ({ title, url }) => {
     }).catch((error) => console.log(error));
   }, [url])
 
-  console.log(movies)
+  // console.log(movies)
 
   return (
     <>

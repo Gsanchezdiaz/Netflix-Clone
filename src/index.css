@@ -22,8 +22,8 @@
 body {
 	font-family: "Nsans Regular", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 	color: white;
-	/* background-color: black; */
-	background-image: url("https://assets.nflxext.com/ffe/siteui/vlv3/93da5c27-be66-427c-8b72-5cb39d275279/42011383-aaa3-42ea-9a65-55b195e8bfc4/PE-es-20240226-popsignuptwoweeks-perspective_alpha_website_large.jpg");
+	background-color: black;
+	/* background-image: url("https://assets.nflxext.com/ffe/siteui/vlv3/93da5c27-be66-427c-8b72-5cb39d275279/42011383-aaa3-42ea-9a65-55b195e8bfc4/PE-es-20240226-popsignuptwoweeks-perspective_alpha_website_large.jpg"); */
 	background-size: cover;
 	background-position: center;
 	background-repeat: no-repeat;

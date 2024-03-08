@@ -8,12 +8,12 @@ const Banner = () => {
 
     useEffect(() => {
         axios.get(endpoints.popular).then((response) => {
-            console.log(response.data);
+            // console.log(response.data);
             if (response.status === 200 && response.data.results.length > 0) {
                 const movies = response.data.results;
                 const randomMovie = movies[Math.floor(Math.random() * movies.length)];
                 setMovie(randomMovie);
-                console.log(randomMovie);
+                // console.log(randomMovie);
             } else {
                 console.log("No se pudo obtener la información de la película");
             }
