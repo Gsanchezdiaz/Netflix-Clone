@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
-import endpoints from '../services/movieServices';
+import endpoints, { createImageUrl } from '../services/movieServices';
 
 const Banner = () => {
 
@@ -37,7 +37,7 @@ const Banner = () => {
                 <div className='absolute w-full h-[550px] lg:h-[850px] bg-gradient-to-r from-black'></div>
                 <img
                     className='w-full h-full object-cover object-top'
-                    src={`https://image.tmdb.org/t/p/original/${backdrop_path}`}
+                    src={createImageUrl(backdrop_path, "original")}
                     alt={title}
                 />
 
@@ -48,7 +48,7 @@ const Banner = () => {
                             Ver
                         </button>
                         <button className='capitalize rounded border border-gray-300 py-2 px-5 ml-4'>
-                            Ver despues
+                            Ver después
                         </button>
                     </div>
                     <p className='text-gray-400 text-sm'>{release_date}</p>
