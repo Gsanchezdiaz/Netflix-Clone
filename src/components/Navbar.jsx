@@ -8,12 +8,12 @@ const Navbar = () => {
             <h1 className='text-redflix uppercase font-nsans-bold cursor-pointer text-5xl'>netflix</h1>
         </Link>
 
-        <div className=' '>
+        <div className=''>
             <Link to="/login">
                 <button className='capitalize bg-red-redflix px-3 py-1 rounded font-nsans-medium cursor-pointer'>iniciar sesión</button>
             </Link>
             <Link to="/signup">
-                <button className='capitalize px-3 py-1 rounded font-nsans-medium cursor-pointer'>Registrarse</button>
+                <button className='capitalize px-3 py-1 rounded font-nsans-medium cursor-pointer ml-4'>Registrarse</button>
             </Link>
         </div>
     </div>
