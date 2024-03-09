@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import { UserAuth } from '../context/AuthContex';
 
 const Signup = () => {
 
@@ -7,9 +8,17 @@ const Signup = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
-    const handleSubmit = (e) => {
+    const { user, SignUp } = UserAuth();
+    const navigate = useNavigate();
+
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        // console.log(email + " " + password);
+        try {
+            await SignUp(email, password);
+            navigate('/')
+        } catch (error) {
+            console.log("Error: ", error);
+        }
     }
 
     return (
@@ -64,7 +73,7 @@ const Signup = () => {
                                 <span className='mr-2 text-gray-600'>
                                     ¿Ya tienes una cuenta?
                                 </span>
-                                <Link className='hover:underline' to="/login">Inicia sesión</Link>
+                                <Link className='hover:underline' to="/login">Inicia sesión.</Link>
                             </p>
                         </form>
                     </div>
