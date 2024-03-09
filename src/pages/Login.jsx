@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import { UserAuth } from '../context/AuthContex';
 
 const Login = () => {
 
@@ -7,9 +8,18 @@ const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const  handleSubmit = (e) => {
+  const { user, logIn } = UserAuth();
+  const navigate = useNavigate();
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // console.log(email + " " + password);
+    try {
+      await logIn(email, password);
+      navigate('/')
+
+    } catch (error) {
+      console.log('Error: ', error)
+    }
   }
 
   return (
@@ -21,10 +31,10 @@ const Login = () => {
       />
       <div className='bg-black/70 fixed top-0 left-0 w-full h-screen'></div>
       <div className='fixed w-full px-4 py-24 z-20'>
-        <div className='max-w-[450px] h-[600px] mx-auto bg-black/80 rounded-lg'>
+        <div className='max-w-[450px] h-[500px] mx-auto bg-black/80 rounded-lg'>
           <div className='max-w-[320px] mx-auto py-16'>
             <h1 className='text-3xl font-nsans-bold'>Inicia sesión</h1>
-            <form 
+            <form
               className='w-full flex flex-col py-4'
               onSubmit={handleSubmit}>
               <input

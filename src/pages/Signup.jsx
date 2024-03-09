@@ -4,17 +4,17 @@ import { UserAuth } from '../context/AuthContex';
 
 const Signup = () => {
 
-    const [rememberLogin, setRememberLogin] = useState(false);
+    const [rememberLogin, setRememberLogin] = useState(true);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
-    const { user, SignUp } = UserAuth();
+    const { user, subscribe } = UserAuth();
     const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            await SignUp(email, password);
+            await subscribe(email, password);
             navigate('/')
         } catch (error) {
             console.log("Error: ", error);
@@ -30,7 +30,7 @@ const Signup = () => {
             />
             <div className='bg-black/70 fixed top-0 left-0 w-full h-screen'></div>
             <div className='fixed w-full px-4 py-24 z-20'>
-                <div className='max-w-[450px] h-[600px] mx-auto bg-black/80 rounded-lg'>
+                <div className='max-w-[450px] h-[500px] mx-auto bg-black/80 rounded-lg'>
                     <div className='max-w-[320px] mx-auto py-16'>
                         <h1 className='text-3xl font-nsans-bold'>Registrar</h1>
                         <form
