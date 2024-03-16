@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
+import { useLocation } from 'react-router-dom'
 import { createImageUrl } from '../services/movieServices';
 import { FaHeart, FaRegHeart } from 'react-icons/fa'
-import { arrayUnion, doc, updateDoc } from 'firebase/firestore'
+import { arrayUnion, arrayRemove, doc, updateDoc } from 'firebase/firestore'
 import { UserAuth } from '../context/AuthContex'
 import { db } from '../services/firebase'
 
@@ -12,9 +13,8 @@ const MovieItem = ({ movie }) => {
   const { user } = UserAuth();
 
   // Function to handle the like functionality of a movie.
-  const markFavShow = async () => {
+  const handlelikeShow = async () => {
     const userEmail = user?.email;
-    console.log(userEmail);
     if (userEmail) {
       const userDoc = doc(db, "users", userEmail);
       setLike(!like);
@@ -23,6 +23,17 @@ const MovieItem = ({ movie }) => {
       })
     } else {
       alert('Inicia sesion para guardar la pelicula!')
+    }
+  }
+
+  const handleUnlikeShow = async (movie) => {
+    const userEmail = user?.email;
+    if (userEmail) {
+      const userDoc = doc(db, "users", userEmail)
+      setLike(!like);
+      await updateDoc(userDoc, {
+        favShows: arrayRemove(movie)
+      })
     }
   }
 
@@ -37,13 +48,15 @@ const MovieItem = ({ movie }) => {
         <p className='whitespace-normal text-xs md:text-sm flex justify-center items-center h-full font-nsans-bold'>{title}</p>
         <p
           className='cursor-pointer'
-          onClick={markFavShow}
+
         >{like ? (
           <FaHeart
+            onClick={() => handleUnlikeShow(movie)}
             size={20}
             className='absolute top-3 left-3 text-gray-300'
           />) : (
           <FaRegHeart
+            onClick={handlelikeShow}
             size={20}
             className='absolute top-3 left-3 text-gray-300'
           />)}
